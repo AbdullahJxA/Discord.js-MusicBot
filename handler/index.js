@@ -51,7 +51,12 @@ const { DisTube } = require("distube")
 const { SpotifyPlugin } = require("@distube/spotify")
       const { SoundCloudPlugin } = require("@distube/soundcloud")
       const { YtDlpPlugin } = require('@distube/yt-dlp')
-
+/*
+optional : 
+to play music from spotify and soundcloud add this to line 67 :
+    new SoundCloudPlugin(),
+    new YtDlpPlugin()
+*/
 const distube = new DisTube(client, {
 
   leaveOnEmpty: true,
@@ -61,8 +66,7 @@ plugins: [
     new SpotifyPlugin({
         emitEventsAfterFetching: true
     }),
-    new SoundCloudPlugin(),
-    new YtDlpPlugin()
+
 
 ]
 })
