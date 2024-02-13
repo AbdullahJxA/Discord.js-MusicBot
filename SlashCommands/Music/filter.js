@@ -16,7 +16,7 @@ module.exports = {
    
     run: async (client, interaction, args) => {
         if(!interaction.member.voice?.channel) return interaction.followUp({content : `❌ | Join a voice channel.`})
-
+ // Available filters : bassboost , 3d , echo , karaoke , nightcore , vaporwave , reverse , gate , flanger  
         var queue = client.player.getQueue(interaction)
         var e = new MessageEmbed()
         .setTitle(`Can't get queue`)
@@ -33,7 +33,6 @@ if(s===`bassboost`) {
     .setDescription(`**The current filters are** \`\`\`${queue.filters.join(` `) || `None`}\`\`\``)
         interaction.followUp({embeds : [eee]})
 }
- /*bassboost , 3d , echo , karaoke , nightcore , vaporwave , reverse , gate , flanger  */
  if(s===`3d`) {
     queue.setFilter(`3d`)
     var eee = new MessageEmbed()
