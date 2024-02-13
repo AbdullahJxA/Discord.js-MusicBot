@@ -107,15 +107,5 @@ if(volume === "100") {
     .setDescription(`✅ | Volume has been set to 100`)
     interaction.followUp({embeds : [eee]})
 }
-
-        /*
-        var volume = parseInt(args[0])
-        var ee = new MessageEmbed()
-        .setTitle(`Numbers only`)
-        .setColor(`RED`)
-        .setDescription(`❌ | Please use numbers only. And enter a number from 1 to 100`)
-        if (isNaN(volume)  || 100 < args[0] || args[0] <= 0) return interaction.followUp({embeds : [ee]})
-        */
-
     }
 }
