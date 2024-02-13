@@ -9,7 +9,8 @@ module.exports = {
  * @param {Interaction} interaction 
  */
     run: async (client, interaction, args) => {
-        var slash = client.commands
+var slash = client.commands
+
 var e = new MessageEmbed()
 .setTitle(`Commands List`)
 .setColor(`#5241b4`)
