@@ -5,13 +5,12 @@ const client = new Client({
 });
 module.exports = client;
 
-// Global Variables
 client.commands = new Collection();
 client.slashCommands = new Collection();
 client.events = new Collection()
-client.config = require("./config.json");
 
-// Initializing the project 
-require("./handler")(client);
+client.config = require("./config.json") // Can be renamed to whatever you like.
+
+require("./handler")(client)
 
 client.login(client.config.token);
