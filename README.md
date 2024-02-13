@@ -21,6 +21,6 @@ client.application.commands.set(arrayOfSlashCommands)
 ## Copyrights
 
 * handler is for __recondev__
-* Any other code in this project is fully made by [JxA](https://thedevjxa.ga).
+* Any other code in this project is fully made by [JxA](https://jxa.one).
 
-<h1 style="red"> This project is made by <a href="https://thedevjxa.ga">thedevjxa</a> it was made with love and hard-working </h1>
+<h1 style="red"> This project is made by <a href="https://jxa.one">JxA</a> it was made with love and hard-working </h1>
