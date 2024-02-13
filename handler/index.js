@@ -72,130 +72,35 @@ plugins: [
 })
 
 client.player = distube
-
+//Better version of the song events.
 distube.on("playSong", (queue, song) => {   
-  var button = new MessageActionRow().addComponents(
-    new MessageButton()
-    .setLabel(`Pause`)
-    .setEmoji(`⏸️`)
-    .setCustomId(`pause`)
-    .setStyle(`SUCCESS`),
-    new MessageButton()
-    .setLabel(`Resume`)
-    .setEmoji(`⏯️`)
-    .setCustomId(`resume`)
-    .setStyle(`SUCCESS`),
-    new MessageButton()
-    .setLabel(`Volume +10`)
-    .setEmoji(`➕`)
-    .setCustomId(`vol+10`)
-    .setStyle(`SUCCESS`),
-    new MessageButton()
-    .setLabel(`Volume -10`)
-    .setEmoji(`➖`)
-    .setCustomId(`vol-10`)
-    .setStyle(`DANGER`),
-    new MessageButton()
-    .setLabel(`Stop`)
-    .setEmoji(`⏹️`)
-    .setCustomId(`stop`)
-    .setStyle(`DANGER`),); 
-    var button2 = new MessageActionRow().addComponents(
-      new MessageButton()
-      .setLabel(`Repeat`)
-      .setEmoji(`🔁`)
-      .setCustomId(`repeat`)
-      .setStyle(`SUCCESS`),
-      ); 
-  var embed = new MessageEmbed()
-.addField(`> Name:`,`[${song.name}](${song.url})`,true)
-.addField(`> Duration:`, `\`${song.formattedDuration}\``,true)
-.addField(`> Requested By:`,`${song.member}`)
-.setTitle(`${song.name}`)
-.setTimestamp()
-.setColor(`#5241b4`)
-.setThumbnail(`${song.thumbnail}`)
-queue.textChannel.send({embeds : [embed], components : [button,button2] })
+queue.textChannel.send({content : `Started playing \`${song.name}\`. \n Requested by : ${song.user} | Volume : \`${queue.volume}%\` | Length : \`${song.formattedDuration}\``})
 })
-
-
-distube.on("addList", (queue, playlist) => {
-  var e = new MessageEmbed()
-  .setColor(`#5241b4`)
-  .setTimestamp()
-  .setThumbnail(playlist.thumbnail)
-  .setAuthor({name : `${queue.guild.name}`, iconURL : `${queue.guild.iconURL({dynamic : true}) || `https://cdn.discordapp.com/avatars/1002665491590033440/7992c22fb779aad4456c117ec41fbe7c.png`}`})
-.setURL(`${playlist.url}`)
-  .setTitle(`${playlist.name}`)
-  .addFields(
-      {
-        name : "> Name:",
-        value : `${playlist.name}`,
-        inline: true
-      },
-       
-           {
-        name : "> Length:",
-        value : `${playlist.songs.length}`,
-        inline: true
-      },
-      {
-       name: '> Mode:',
-       value: "Add list",
-       inline: true
-      },
-      
-    
-          {
-          name : "> Requested by:",
-        value : `${playlist.user}`,
-        inline: true
-      }
-  )
-      queue.textChannel.send({embeds : [e]})
-})
-
-
-
-
- 
+distube.on("addSong", (queue, song) => {
+var m = queue.textChannel.send({content : `Added \`${song.name}\` to the queue. \n Requested by : ${song.user} | Volume : \`${queue.volume}%\` | Length : \`${song.formattedDuration}\``})
+setInterval(() => {
+  m.delete()
+}, 5000)
+ })
 distube.on("finish", queue =>  { 
-      var e = new MessageEmbed()
-      .setColor(`GREEN`)
-      .setDescription(`✅ | Finished the queue. leaving voice channel...`)
-      queue.textChannel.send({embeds : [e]}) 
+      queue.textChannel.send({content : `✅ | Finished the queue.`}) 
 })
 distube.on(`empty`, queue => {
-var e = new MessageEmbed()
-.setColor(`GREEN`)
-.setDescription(`✅ | Leaving the room because its empty...`)
-queue.textChannel.send({embeds : [e]})
+queue.textChannel.send({content : `✅ | Leaving the room because its empty...`})
 })
 distube.on(`error`, (channel, error) => {
 var e = new MessageEmbed()
 .setColor(`RED`)
-.setDescription(`❌ | Oops we there is an error, try reporting it to the developers team.`)
+.setDescription(`❌ | Oops we there is an error, try reporting it to jxa.`)
 .setFooter(`${error}`)
-.setAuthor({name : `${channel.guild.name}`, iconURL : `${channel.guild.iconURL({dynamic : true}) || `https://cdn.discordapp.com/avatars/1002665491590033440/7992c22fb779aad4456c117ec41fbe7c.png`}`})
-
 channel.send({embeds : [e]})
 })
 distube.on(`searchNoResult` , (message, query) => {
-var e = new MessageEmbed()
-.setColor(`RED`)
-.setAuthor({name : `${message.guild.name}`, iconURL : `${message.guild.iconURL({dynamic : true}) || `https://cdn.discordapp.com/avatars/1002665491590033440/7992c22fb779aad4456c117ec41fbe7c.png`}`})
-.setDescription(`❌ | No result for \`${query}\`.`)
-message.channel.send({embeds : [e]})
+message.channel.send({content : `❌ | There is no such song.`})
 })
 distube.on("initQueue", queue => {
 queue.autoplay = false;
 queue.volume = 70;  
 });
-
-
-
-
-
-
 
  }
