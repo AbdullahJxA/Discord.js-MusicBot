@@ -4,7 +4,7 @@
 
 * Go to __config.json__ and fill the required things
 * Go to __handler/index.js:47__ put the guild id for single guild use.
-* __Node.js v16__ or latest version is __required__
+* __Node.js v16__ or __Node.js v18 is __required__
 * __Discord.js v13.14.0__ and __Distube v3.3.4__ are __required!__
 
 
