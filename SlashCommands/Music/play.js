@@ -13,11 +13,9 @@ type : "STRING"
 
         }
     ],
-    run: async (client, interaction, args) => {
-       
-        if(!interaction.member.voice?.channel) return interaction.followUp({content : `❌ | Join a voice channel.`})
-
-
+    run: async (client, interaction, args) => {  
+if(!interaction.member.voice?.channel) return interaction.followUp({content : `❌ | Join a voice channel.`})
+interaction.followUp({content : "Started."})
 var search = interaction.options.getString(`query`)
 client.player.play(interaction.member.voice?.channel, search, {
     member: interaction.member,
